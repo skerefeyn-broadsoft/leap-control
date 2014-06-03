@@ -13,4 +13,8 @@ public interface RemoteEventsListener {
 	public void onSceneMove();
 	
 	public void onSceneRelease();
+	
+	public void onItemMove();
+	
+	public void onItemRelease();
 }

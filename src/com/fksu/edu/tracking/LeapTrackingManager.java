@@ -56,14 +56,21 @@ public class LeapTrackingManager extends Listener {
 			if(hands.count() == 1 && hand.isRight()) {
 				int fingerCount = extendedFingerCount(hand);
 				System.out.println("FingerCount: " + fingerCount);
-				if(fingerCount > 2 ) {
+				if(fingerCount > 3 ) {
 					remote.onSceneRelease();
+					remote.onItemRelease();
+					calculateMouseMovement(frame, hand);
+				} else if(fingerCount == 3) {
+					remote.onSceneRelease();
+					remote.onItemMove();
 					calculateMouseMovement(frame, hand);
 				} else if(fingerCount == 2){
+					remote.onItemRelease();
 					remote.onSceneMove();
 					calculateMouseMovement(frame, hand);
 				} else {	
 					remote.onSceneRelease();
+					remote.onItemRelease();
 					calculateGesture(frame);
 				}
 			}
@@ -130,11 +137,11 @@ public class LeapTrackingManager extends Listener {
             avgPos = avgPos.divide(fingers.count());
 			
 //			Finger finger = hand.fingers().get(0);
-//			Vector fingerPosition = finger.stabilizedTipPosition();
+//			Vector avgPos = finger.stabilizedTipPosition();
 			float xNow = avgPos.getX();
-			System.out.println("xNow: " + xNow + " xPast: " + xPast);
+//			System.out.println("xNow: " + xNow + " xPast: " + xPast);
 			float yNow = avgPos.getY();
-			System.out.println("yNow: " + yNow + " yPast: " + yPast);
+//			System.out.println("yNow: " + yNow + " yPast: " + yPast);
 
 			float xMove = 0;
 			float yMove = 0;
@@ -163,7 +170,7 @@ public class LeapTrackingManager extends Listener {
 			yPast = yNow;
 
 			remote.onMouseMove(xMove, yMove);
-			System.out.println("Mouse moved with x: " + xMove + " y: " + yMove);
+//			System.out.println("Mouse moved with x: " + xMove + " y: " + yMove);
 		}
 		lastFrame = frame;
 	}
