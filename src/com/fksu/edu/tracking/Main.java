@@ -11,6 +11,7 @@ public class Main {
         // Create a sample listener and controller
         LeapTrackingManager listener = new LeapTrackingManager();
         Controller controller = new Controller();
+        controller.setPolicyFlags(Controller.PolicyFlag.POLICY_BACKGROUND_FRAMES);
 
         // Have the sample listener receive events from the controller
         controller.addListener(listener);

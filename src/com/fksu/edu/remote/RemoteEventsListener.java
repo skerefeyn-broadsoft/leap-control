@@ -2,21 +2,15 @@ package com.fksu.edu.remote;
 
 public interface RemoteEventsListener {
 
-	int SCROLL_UP = 1;
-	int SCROLL_DOWN = 2;
+	public void onZoomOut();
+	
+	public void onZoomIn();
 
-	void onScroll(int direction);
+	public void onMouseMove(float x, float y);
 
-	void onMouseMove(float x, float y);
+	public void onLeftMouseButtonClick();
 
-	void onLeftMouseButtonClick();
-
-	void onLeftMouseButtonDoubleClick();
-
-	void onRightMouseButtonClick();
-
-	void onMiddleMouseButtonClick();
-
-	void onLeftMouseButtonDown();
-
+	public void onSceneMove();
+	
+	public void onSceneRelease();
 }
