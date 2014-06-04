@@ -11,9 +11,9 @@ public class RemoteEventsListenerImpl implements RemoteEventsListener {
 
 	private Robot robot;
 
-	private boolean isSceneMoved = false;
+	private boolean isItemTranslated = false;
 
-	private boolean isItemMoved = false;
+	private boolean isItemRotated = false;
 	
 	public RemoteEventsListenerImpl() {
 		try {
@@ -78,42 +78,42 @@ public class RemoteEventsListenerImpl implements RemoteEventsListener {
 	}
 	
 	@Override
-	public synchronized void onSceneMove() {
-		System.out.println("[remote] onSceneMove");
-		if(!isSceneMoved) {
+	public synchronized void onItemTranslationStart() {
+		System.out.println("[remote] onItemTranslation");
+		if(!isItemTranslated) {
 			robot.mousePress(InputEvent.BUTTON2_MASK);
 			System.out.println("[remote] button 2 press");
-			isSceneMoved = true;
+			isItemTranslated = true;
 		}
 	}
 	
 	@Override
-	public synchronized void onSceneRelease() {
-		System.out.println("[remote] onSceneRelease");
-		if(isSceneMoved) {
+	public synchronized void onItemTranslationEnd() {
+		System.out.println("[remote] onItemTranslationEnd");
+		if(isItemTranslated) {
 			robot.mouseRelease(InputEvent.BUTTON2_MASK);
 			System.out.println("[remote] button 2 press");
-			isSceneMoved = false;
+			isItemTranslated = false;
 		}
 	}
 
 	@Override
-	public synchronized void onItemMove() {
-		System.out.println("[remote] onItemMove");
-		if(!isItemMoved ) {
+	public synchronized void onItemRotationStart() {
+		System.out.println("[remote] onItemRotation");
+		if(!isItemRotated ) {
 			robot.mousePress(InputEvent.BUTTON1_MASK);
 			System.out.println("[remote] button 1 press");
-			isItemMoved = true;
+			isItemRotated = true;
 		}
 	}
 
 	@Override
-	public synchronized void onItemRelease() {
-		System.out.println("[remote] onItemRelease");
-		if(isItemMoved) {
+	public synchronized void onItemRotationEnd() {
+		System.out.println("[remote] onItemRotationEnd");
+		if(isItemRotated) {
 			robot.mouseRelease(InputEvent.BUTTON1_MASK);
 			System.out.println("[remote] button 1 release");
-			isItemMoved = false;
+			isItemRotated = false;
 		}
 	}
 }

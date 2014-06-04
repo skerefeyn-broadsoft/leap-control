@@ -57,20 +57,20 @@ public class LeapTrackingManager extends Listener {
 				int fingerCount = extendedFingerCount(hand);
 				System.out.println("FingerCount: " + fingerCount);
 				if(fingerCount > 3 ) {
-					remote.onSceneRelease();
-					remote.onItemRelease();
+					remote.onItemTranslationEnd();
+					remote.onItemRotationEnd();
 					calculateMouseMovement(frame, hand);
 				} else if(fingerCount == 3) {
-					remote.onSceneRelease();
-					remote.onItemMove();
+					remote.onItemTranslationEnd();
+					remote.onItemRotationStart();
 					calculateMouseMovement(frame, hand);
 				} else if(fingerCount == 2){
-					remote.onItemRelease();
-					remote.onSceneMove();
+					remote.onItemRotationEnd();
+					remote.onItemTranslationStart();
 					calculateMouseMovement(frame, hand);
 				} else {	
-					remote.onSceneRelease();
-					remote.onItemRelease();
+					remote.onItemTranslationEnd();
+					remote.onItemRotationEnd();
 					calculateGesture(frame);
 				}
 			}

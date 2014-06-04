@@ -10,11 +10,11 @@ public interface RemoteEventsListener {
 
 	public void onLeftMouseButtonClick();
 
-	public void onSceneMove();
+	public void onItemTranslationStart();
 	
-	public void onSceneRelease();
+	public void onItemTranslationEnd();
 	
-	public void onItemMove();
+	public void onItemRotationStart();
 	
-	public void onItemRelease();
+	public void onItemRotationEnd();
 }
